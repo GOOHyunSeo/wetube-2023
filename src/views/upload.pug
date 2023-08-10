@@ -1,0 +1,11 @@
+extends base
+
+block content
+    h4 Upload Video
+    if errorMessage
+        span=errorMessage
+    form(method="POST")
+        input(name="title" placeholder="Title" required type="text" maxlength=30)
+        input(name="description" placeholder="Description" required type="text" minlength=10)
+        input(name="hashtags" placeholder="Hashtags, seperated by ," required type="text")
+        input(type="submit" value="upload")

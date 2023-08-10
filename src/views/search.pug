@@ -1,0 +1,12 @@
+extends base
+include ./mixins/video
+
+block content 
+    h4 Search Video
+    form(method="GET")
+        input(type="text" name="keyword" placeholder="Type Title")
+        input(type="submit" value="Search")
+    
+    div 
+        each video in videos 
+            +videoMix(video)

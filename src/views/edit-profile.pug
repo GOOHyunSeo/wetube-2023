@@ -1,0 +1,14 @@
+extends base 
+
+block content
+    if(errorMessage)
+        span=errorMessage
+    form(method="POST" enctype="multipart/form-data")
+        input(name="name" placeholder="Name" type="stirng" required value=loggedInUser.name)
+        input(name="email" placeholder="Email" type="email" required value=loggedInUser.email)
+        input(name="username" placeholder="Username" type="stirng" required value=loggedInUser.username)
+        input(name="location" placeholder="Location" type="stirng" required value=loggedInUser.location)
+        input(type="submit" value="Edit Profile")
+        if !loggedInUser.githubOnly
+            hr
+            a(href="change-password") Change Password
