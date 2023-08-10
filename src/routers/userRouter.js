@@ -3,7 +3,7 @@ import {
   see,
   logout,
   getEditProfile,
-  postEdit,
+  postEditProfile,
   startGithubLogin,
   finishGithubLogin,
   getChangePassword,
@@ -18,7 +18,7 @@ userRouter
   .route("/edit")
   .all(protectorMiddleware)
   .get(getEditProfile)
-  .post(postEdit);
+  .post(postEditProfile);
 userRouter
   .route("/change-password")
   .all(protectorMiddleware)
