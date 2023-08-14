@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
@@ -106,7 +107,7 @@ export const finishGithubLogin = async (req, res) => {
     if (!emailObj) {
       return res.redirect("/login");
     }
-    const user = await User.findOne({ email: emailObj.email });
+    let user = await User.findOne({ email: emailObj.email });
     if (!user) {
       user = await User.create({
         name: userData.name,
@@ -138,12 +139,11 @@ export const getEditProfile = (req, res) => {
 export const postEditProfile = async (req, res) => {
   const {
     session: {
-      user: { _id, email: sessionEmail, username: sessionUsername },
+      user: { _id, email: sessionEmail, username: sessionUsername, avatarUrl },
     },
     body: { name, email, username, location },
+    file,
   } = req;
-  console.log(req.session);
-  console.log(req.body);
   if (sessionUsername !== username) {
     const exists = await User.exists({ username });
     if (exists) {
@@ -165,6 +165,7 @@ export const postEditProfile = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
+      avatarUrl: file ? file.path : avatarUrl,
       name,
       email,
       username,
@@ -173,7 +174,6 @@ export const postEditProfile = async (req, res) => {
     { new: true }
   );
   req.session.user = updatedUser;
-  console.log(req.session.user);
   return res.redirect("/users/edit");
 };
 
@@ -214,4 +214,14 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/");
 };
 
-export const see = (req, res) => res.send("see");
+export const see = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate("videos");
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "Profile Not Found" });
+  }
+  return res.render("users/profile", {
+    pageTitle: user.username,
+    user,
+  });
+};
