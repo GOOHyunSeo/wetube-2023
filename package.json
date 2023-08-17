@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "The best way to watch videos!",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,13 @@
     "@babel/core": "^7.22.8",
     "@babel/node": "^7.22.6",
     "@babel/preset-env": "^7.22.7",
-    "nodemon": "^2.0.22"
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "nodemon": "^2.0.22",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }
