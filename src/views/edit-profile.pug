@@ -4,7 +4,7 @@ block content
     image(src=`/${loggedInUser.avatarUrl}` width=100 height=100)
     if(errorMessage)
         span=errorMessage
-    form(method="POST" enctype="multipart/form-data")
+    form(method="POST" enctype="multipart/form-data").edit-profile_form
         label(for="avatar") Avatar 
         input(name="avatar" type="file" accept="image/*" id="avatar")
         input(name="name" placeholder="Name" type="stirng" required value=loggedInUser.name)
@@ -13,5 +13,5 @@ block content
         input(name="location" placeholder="Location" type="stirng" required value=loggedInUser.location)
         input(type="submit" value="Edit Profile")
         if !loggedInUser.githubOnly
-            hr
-            a(href="change-password") Change Password
+            div.edit-profile__password
+                a(href="change-password") Change Password

@@ -7,9 +7,10 @@ block content
         input(name="username" type="text" placeholder="Username" required)
         input(name="password" type="password" placeholder="Password" required)
         input(type="submit" value="Login")
-        br
-        a(href="/users/github/strat") Continue With Github
-    hr
-    div 
+        div.social-login
+        a(href="/users/github/strat").social__btn.social__btn--github 
+            i.fab.fa-github  Continue With Github
+
+    div.auth-switch
         span Don't have account? 
         a(href="/join") Join
