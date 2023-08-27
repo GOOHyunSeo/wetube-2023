@@ -32,11 +32,11 @@ const formatTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substring(14, 19);
 const handleLoadedMetadata = (event) => {
   totalTime.innerText = formatTime(Math.floor(video.duration));
-  timeline.max = video.duration;
+  timeline.max = Math.floor(video.duration);
 };
 const handleTimeupdate = () => {
   currentTime.innerText = formatTime(Math.floor(video.currentTime));
-  timeline.value = video.currentTime;
+  timeline.value = Math.floor(video.currentTime);
 };
 const handleTimeline = (event) => {
   video.currentTime = event.target.value;
@@ -91,6 +91,11 @@ const handleMouseLeave = () => {
   }, 3000);
 };
 
+const handleEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, { method: "POST" });
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 video.addEventListener("keyup", handlePlayKeyup);
 document.addEventListener("keyup", handlePlayKeyup);
@@ -102,3 +107,4 @@ volumeRange.addEventListener("input", handleVolumeInput);
 fullscreenBtn.addEventListener("click", handleScreenClick);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+video.addEventListener("ended", handleEnded);
