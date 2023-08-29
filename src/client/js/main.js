@@ -1,3 +1,3 @@
 import "../scss/styles.scss";
 
-console.log("this is main.js");
+console.log("This is main.js");
