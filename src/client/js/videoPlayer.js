@@ -70,7 +70,7 @@ const handleLoadedMetadata = () => {
 };
 const handleTimeupdate = () => {
   currentTime.innerText = formatTime(Math.floor(video.currentTime));
-  timeline.value = video.currentTime;
+  timeline.value = Math.floor(video.currentTime);
 };
 const handleTimelineChange = (event) => {
   const {
