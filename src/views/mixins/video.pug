@@ -1,5 +1,5 @@
 mixin videoMix(info)
-    div.video-mixin__thumb
+    div.video-mixin__thumb(style=`background-image:url(${info.thumbUrl}); background-size:cover;background-position:center`)
     div
         a(href=`/videos/${info.id}`)=info.title
     div
