@@ -52,6 +52,7 @@ export const postEdit = async (req, res) => {
   if (String(modifiedVideo.owner) !== String(_id)) {
     return res.status(403).redirect("/");
   }
+  req.flash("success", "Changes done");
   return res.redirect(`/videos/${id}`);
 };
 
@@ -103,6 +104,7 @@ export const deleteVideo = async (req, res) => {
   }
   await Video.findByIdAndDelete(id);
   await User.findByIdAndUpdate(_id, { $pull: { videos: id } });
+  req.flash("success", "Delete done");
   return res.redirect("/");
 };
 
