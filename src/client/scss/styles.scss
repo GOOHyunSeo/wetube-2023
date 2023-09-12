@@ -42,3 +42,20 @@ body {
     color: white;
   }
 }
+
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  .video__comment {
+    background-color: white;
+    color: black;
+    list-style-type: none;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
