@@ -10,14 +10,12 @@ module.exports = {
     recorder: BASE_JS + "recorder.js",
     comment: BASE_JS + "comment.js",
   },
-  mode: "development",
   plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
   output: {
     filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"),
     clean: true,
   },
-  watch: true,
   module: {
     rules: [
       {

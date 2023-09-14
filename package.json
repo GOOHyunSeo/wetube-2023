@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "The best way to watch videos!",
   "scripts": {
+    "start": "node build/init.js",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
     "dev:server": "nodemon",
-    "dev:assets": "webpack"
+    "dev:assets": "webpack --mode=development -w"
   },
   "repository": {
     "type": "git",
@@ -28,7 +32,8 @@
     "regenerator-runtime": "^0.14.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.8",
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.17",
     "@babel/node": "^7.22.6",
     "@babel/preset-env": "^7.22.7",
     "babel-loader": "^9.1.3",
